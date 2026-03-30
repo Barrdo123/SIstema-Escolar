@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+model Student{
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  nome      String
+  birthDate DateTime
+  enrollments   Enrollment[]
+  createdAt DateTime @default(now())
+  grades Grade[]
+  attendances Attendance[]
+}
+
+model Teacher {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  nome      String
+  subject   String
+  classes   Class[]
+  createdAt DateTime @default(now())
+}
+
+model Class {
+  id    Int   @id @default(autoincrement())
+  teacherId   Int
+  teacher    Teacher @relation(fields: [teacherId], references: [id])
+  name    String
+  period    String
+  enrollments    Enrollment[]
+  createdAt   DateTime  @default(now())
+  grades Grade[]
+  attendances Attendance[]
+}
+
+model Enrollment{
+  id    Int   @id @default(autoincrement())
+  studentId   Int
+  student   Student   @relation(fields: [studentId], references: [id])
+  classId   Int
+  class   Class   @relation(fields: [classId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Grade{
+  id    Int   @id @default(autoincrement())
+  value Float
+  valueType   String
+  studentId   Int
+  student   Student   @relation(fields: [studentId], references: [id])
+  classId   Int
+  class   Class   @relation(fields: [classId], references: [id])
+  createdAt   DateTime    @default(now())
+}
+
+enum StatusAttendance{
+  PRESENT
+  ABSENT
+}
+model Attendance{
+  id    Int   @id @default(autoincrement())
+  date  DateTime
+  status    StatusAttendance
+  studentId   Int
+  student   Student   @relation(fields: [studentId], references: [id])
+  classId   Int
+  class   Class   @relation(fields: [classId], references: [id])
+  createdAt   DateTime    @default(now())
+
+}
