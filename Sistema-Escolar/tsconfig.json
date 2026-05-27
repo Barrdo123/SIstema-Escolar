@@ -38,5 +38,6 @@
 
     "esModuleInterop": true,
     "resolveJsonModule": true,
-  }
+  },
+  "exclude": ["prisma.config.ts", "node_modules"]
 }
