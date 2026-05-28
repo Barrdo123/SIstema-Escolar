@@ -28,7 +28,8 @@ export class StudentsRepository {
         return deleteStudent;
     }
 
-    findStudentByEmail(email: string) {
-        return prisma.student.findUnique({ where: { email }})
+    async findStudentByEmail(email: string) {
+        const StudentEmail = await prisma.student.findUnique({ where: { email }})
+        return StudentEmail;
     }
 }

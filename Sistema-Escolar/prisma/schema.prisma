@@ -64,6 +64,7 @@ enum StatusAttendance{
   PRESENT
   ABSENT
 }
+
 model Attendance{
   id    Int   @id @default(autoincrement())
   date  DateTime
