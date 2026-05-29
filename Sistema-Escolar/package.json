@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "build:backend": "tsc",
-    "dev:backend": "tsx watch src/server.ts",
+    "dev:backend": "node_modules/.bin/tsx watch src/server.ts",
     "start": "node dist/server.ts"
   },
   "keywords": [],
@@ -14,7 +14,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@prisma/client": "^7.6.0",
+    "@prisma/client": "^6.0.0",
     "bcryptjs": "^3.0.3",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
@@ -29,11 +29,11 @@
     "@types/node": "^25.5.0",
     "@types/supertest": "^7.2.0",
     "jest": "^30.3.0",
-    "prisma": "^7.6.0",
+    "prisma": "^6.19.3",
     "supertest": "^7.2.2",
     "ts-jest": "^29.4.6",
     "ts-node": "^10.9.2",
     "tsx": "^4.21.0",
-    "typescript": "^6.0.2"
+    "typescript": "^5.8.0"
   }
 }
