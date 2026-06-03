@@ -1,10 +1,10 @@
 import { TeacherController } from "./teachers.controller";
 import { TeacherService } from "./teachers.service";
-import { TeacherRepository } from "./teachers.repository";
+import { TeachersRepository } from "./teachers.repository";
 import  express  from "express";
 
 
-const repository = new TeacherRepository();
+const repository = new TeachersRepository();
 const service = new TeacherService(repository);
 const controller = new TeacherController(service);
 

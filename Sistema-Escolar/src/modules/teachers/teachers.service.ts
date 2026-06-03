@@ -1,12 +1,12 @@
-import { TeacherRepository } from "./teachers.repository";
+import { TeachersRepository } from "./teachers.repository";
 import { AppError } from "../../shared/utils/app.error";
 import { Prisma } from "../../generated/prisma"
 
 
 export class TeacherService {
-    private repository: TeacherRepository;
+    private repository: TeachersRepository;
 
-    constructor (repository: TeacherRepository){
+    constructor (repository: TeachersRepository){
         this.repository = repository
     }
 
@@ -56,13 +56,15 @@ export class TeacherService {
 
     async delete(id: number) {
         const teacherId = await this.repository.findTeacherById(id)
+        if(!teacherId) {
+            throw new AppError('Id not Found', 404)
+        }
 
-        if(!teacherId){
-            throw new AppError ('Id not Found')
-        } else {
-            const deleteTeacher = await this.repository.deleteTeacher(id)
-            return deleteTeacher;
-        }      
-        
+        const classes = await this.repository.findClassesByTeacherId(id)
+        if(classes.length > 0) {
+            throw new AppError('Cannot delete teacher with active classes', 400)
+        }
+
+        return await this.repository.deleteTeacher(id)
     }
-}
+}   

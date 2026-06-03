@@ -1,7 +1,7 @@
 import { prisma } from "../../shared/prisma/client";
 import { Prisma } from "../../generated/prisma"
 
-export class TeacherRepository {
+export class TeachersRepository {
 
     async createTeachers(data: Prisma.TeacherCreateInput) {
         const teacher = await prisma.teacher.create({data})
@@ -14,8 +14,8 @@ export class TeacherRepository {
     }
 
     async findTeacherById(id: number) {
-        const Teacher = await prisma.teacher.findUnique({ where: { id }})
-        return Teacher;
+        const TeacherId = await prisma.teacher.findUnique({ where: { id }})
+        return TeacherId;
     }
 
     async updateTeacher(id: number, data: Prisma.TeacherUpdateInput) {
@@ -31,5 +31,9 @@ export class TeacherRepository {
     async findTeacherByEmail(email: string) {
         const teacherEmail = await prisma.teacher.findUnique({ where: { email }})
         return teacherEmail;
+    }
+
+    async findClassesByTeacherId(teacherId: number) {
+        return prisma.class.findMany({ where: { teacherId } })
     }
 }
