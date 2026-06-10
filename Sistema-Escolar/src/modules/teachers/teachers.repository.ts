@@ -14,8 +14,8 @@ export class TeachersRepository {
     }
 
     async findTeacherById(id: number) {
-        const TeacherId = await prisma.teacher.findUnique({ where: { id }})
-        return TeacherId;
+        const Teacher = await prisma.teacher.findUnique({ where: { id }})
+        return Teacher;
     }
 
     async updateTeacher(id: number, data: Prisma.TeacherUpdateInput) {
@@ -31,9 +31,5 @@ export class TeachersRepository {
     async findTeacherByEmail(email: string) {
         const teacherEmail = await prisma.teacher.findUnique({ where: { email }})
         return teacherEmail;
-    }
-
-    async findClassesByTeacherId(teacherId: number) {
-        return prisma.class.findMany({ where: { teacherId } })
     }
 }
