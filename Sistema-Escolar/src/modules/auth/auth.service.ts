@@ -1,13 +1,13 @@
-import { AuthUserRepository } from "./auth.repository";
+import { AuthRepository } from "./auth.repository";
 import { AppError } from "../../shared/utils/app.error";
 import { Prisma } from "../../generated/prisma"
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-export class UserService {
-    private repository: AuthUserRepository;
+export class AuthService {
+    private repository: AuthRepository;
 
-    constructor(repository: AuthUserRepository){
+    constructor(repository: AuthRepository){
         this.repository = repository
     }
 

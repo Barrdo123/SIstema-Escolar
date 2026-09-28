@@ -5,6 +5,8 @@ import teacherRouter from "./modules/teachers/teachers.routes";
 import classRouter from "./modules/class/class.routes";
 import enrollmentRouter from "./modules/enrollments/enrollments.routes";
 import gradesRouter from "./modules/grades/grades.routes";
+import authRouter from "./modules/auth/auth.routes";
+import attendanceRouter from "./modules/attendance/attendance.routes";
 
 const app = Express();
 app.use(Express.json());
@@ -13,6 +15,9 @@ app.use("/teachers", teacherRouter)
 app.use("/classes", classRouter)
 app.use("/enrollments", enrollmentRouter)
 app.use("/grades", gradesRouter)
+app.use("/auth", authRouter)
+app.use("/attendance", attendanceRouter)
+
 app.use(errorMiddleware);
 
 

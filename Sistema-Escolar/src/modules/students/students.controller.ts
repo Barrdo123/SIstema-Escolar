@@ -1,6 +1,7 @@
 import { NextFunction, Response, Request } from "express";
 import { AppError } from "../../shared/utils/app.error";
 import { StudentService } from "./students.service";
+
 export class StudentController {
     private service: StudentService;
 
